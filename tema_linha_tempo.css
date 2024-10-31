@@ -1,0 +1,360 @@
+/* -------------------------------------
+ * General Style
+ * ------------------------------------- */
+
+* {
+  box-sizing: border-box;
+  /* Inclui padding e bordas nas dimensões */
+}
+
+body {
+  overflow-x: hidden;
+  /* Esconde a rolagem horizontal */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  font-size: 100%;
+  font-family: 'Noto Sans', sans-serif;
+  color: #eee9dc;
+  background: #180161;
+  padding: 0;
+  /* Adiciona espaço nas laterais */
+}
+
+.menu {
+  background-color: #180161; /* Cor de fundo do menu */
+  padding: 10px; /* Espaçamento interno */
+}
+
+.menu ul {
+  list-style: none; /* Remove os marcadores da lista */
+  padding: 0; /* Remove o padding */
+  display: flex; /* Exibe os itens em linha */
+  justify-content: center; /* Centraliza os itens */
+}
+
+.menu li {
+  margin: 0 15px; /* Espaçamento entre os itens do menu */
+}
+
+.menu a {
+  color: #eee9dc; /* Cor do texto */
+  text-decoration: none; /* Remove o sublinhado */
+  font-size: 1.2em; /* Tamanho da fonte */
+}
+
+.menu a:hover {
+  text-decoration: underline; /* Sublinha ao passar o mouse */
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  /* Limita a largura total do header */
+  margin: 0 auto;
+  /* Centraliza o container */
+  padding: 0 20px;
+  /* Adiciona espaço nas laterais */
+}
+
+
+.header img {
+  max-width: 100%;
+  /* Permite que a imagem ocupe até 100% do seu container */
+  height: auto;
+  /* Mantém a proporção da imagem */
+  flex-shrink: 0;
+  /* Impede que a imagem diminua no tamanho original */
+  margin-left: 20px;
+  /* Adiciona espaço à esquerda da imagem */
+}
+
+h1 {
+  margin: 3em 0 0 0;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+video {
+  max-width: 100%;
+  /* Garante que o vídeo não exceda a largura do container */
+  height: auto;
+  /* Mantém a proporção do vídeo */
+  margin: 20px 0;
+  /* Adiciona espaçamento em cima e embaixo do vídeo */
+
+}
+
+.video-section {
+  background-color: #4F1787;
+  /* Cor de fundo da seção */
+  padding: 20px;
+  /* Espaçamento interno para a seção */
+  width: 100%;
+  /* Ocupa toda a largura disponível */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Sombra opcional */
+  margin: 0;
+  /* Remove margens laterais */
+  border-radius: 8px;
+  /* Bordas arredondadas, opcional */
+  display: flex;
+  /* Ativa flexbox */
+  justify-content: center;
+  /* Centraliza horizontalmente */
+}
+
+
+.video-section video {
+  max-width: 100%;
+  /* Garante que o vídeo não exceda a largura da seção */
+  height: auto;
+  /* Mantém a proporção do vídeo */
+}
+
+
+#toggleTimeline {
+  background-color: #EB3678;
+  padding: 10px 20px;
+  font-size: 1em;
+  margin: 20px 0;
+  /* Margem em cima e embaixo */
+  cursor: pointer;
+  display: none;
+  /* Começa oculto */
+  border: #EB3678;
+}
+
+/* -------------------------------------
+   * timeline
+   * ------------------------------------- */
+
+#timeline {
+  list-style: none;
+  margin: 50px 0 30px 120px;
+  /* Para o modo vertical */
+  padding-left: 30px;
+  margin-left: 200px;
+  border-left: 8px solid #EB3678;
+  /* $white */
+
+  li {
+    margin: 60px 0;
+    position: relative;
+
+    p {
+      margin: 0 0 15px;
+    }
+
+    .date {
+      margin-top: -20px;
+      
+      top: 50%;
+      left: -170px;
+      font-size: 0.95em;
+      line-height: 20px;
+      position: absolute;
+    }
+
+    .circle {
+      margin-top: -10px;
+      top: 50%;
+      left: -39px;
+      width: 10px;
+      height: 10px;
+      background: #EB3678;
+      /* $bg */
+      border: 5px solid #eee9dc;
+      /* $white */
+      border-radius: 50%;
+      display: block;
+      position: absolute;
+    }
+
+    .content {
+      max-height: 20px;
+      padding: 50px 20px 10px;
+      border-color: transparent;
+
+      &:before,
+      &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border: solid transparent;
+        position: absolute;
+        pointer-events: none;
+        right: 100%;
+      }
+
+      &:before {
+        border-right-color: inherit;
+        border-width: 20px;
+        top: 50%;
+        margin-top: -20px;
+      }
+
+      &:after {
+        border-right-color: #EB3678;
+        /* $bg */
+        border-width: 17px;
+        top: 50%;
+        margin-top: -17px;
+      }
+
+      p {
+        max-height: none;
+        color: transparent;
+        text-align: justify;
+        word-break: break-word;
+        hyphens: auto;
+      }
+    }
+
+    label {
+      font-size: 1.3em;
+      position: absolute;
+      z-index: 100;
+      cursor: pointer;
+      top: 20px;
+      transition: transform 0.2s linear;
+
+    }
+
+    .radio {
+      display: none;
+
+      &:checked {
+        &+.relative {
+          label {
+            cursor: auto;
+            transform: translateX(42px);
+          }
+
+          .circle {
+            background: #EB3678;
+            ;
+            /* $red */
+          }
+        }
+
+        &~.content {
+          max-height: 180px;
+          border-color: #eee9dc;
+          /* $white */
+          margin-right: 20px;
+          transform: translateX(20px);
+          transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
+
+          p {
+            max-height: 200px;
+            color: #eee9dc;
+            /* $white */
+            transition: color 0.3s linear 0.3s;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -------------------------------------
+   * mobile phones (vertical version only)
+   * ------------------------------------- */
+
+/* -------------------------------------
+ * mobile phones (vertical version only)
+ * ------------------------------------- */
+
+@media screen and (max-width: 767px) {
+  .header {
+    flex-direction: column;
+    /* Muda a direção para coluna em telas pequenas */
+    align-items: center;
+    /* Centraliza os itens */
+  }
+
+  .header img {
+    margin-bottom: 10px;
+    /* Adiciona espaço abaixo da imagem */
+  }
+
+  .Text {
+    text-align: center;
+    /* Centraliza o texto se necessário */
+  }
+
+
+  #timeline {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+
+    li {
+      margin: 50px 0;
+
+      label {
+        width: 85%;
+        
+        font-size: 1.1em;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+        transform: translateX(18px);
+
+      }
+
+      .content {
+        padding: 45px, 0, 20px;
+        border-color: #eee9dc;
+        /* $white */
+
+        &:before,
+        &:after {
+          border: solid transparent;
+          bottom: 100%;
+          display: none;
+          /* Esconde as setas */
+        }
+
+        p {
+          font-size: 0.9em;
+          line-height: 1.4;
+        }
+      }
+
+      .date {
+        position: relative;
+        /* Alterar para 'relative' */
+        left: auto;
+        /* Remover o posicionamento à esquerda */
+        top: 0;
+        /* Ajuste a posição vertical se necessário */
+        text-align: center;
+        /* Centralizar o texto */
+        margin: 0 auto;
+        /* Centralizar horizontalmente */
+        font-size: 0.95em;
+        /* Ajuste se necessário */
+      }
+
+      .circle {
+        margin: 0 auto;
+        /* Centralizar horizontalmente */
+        display: block;
+        /* Certifique-se de que é exibido */
+        top: 0;
+        /* Ajuste a posição vertical se necessário */
+      }
+    }
+  }
+}
